@@ -2,32 +2,22 @@ package com.example.books.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
-public class Book {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
-
     private String name;
 
-    private String genre;
+    private String surname;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Author author;
-
-    public Book(String name, String genre, Author author) {
-        this.name = name;
-        this.genre = genre;
-        this.author = author;
-    }
-
-    public Book() {
-
-    }
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Book> books;
 
     public Long getId() {
         return id;
