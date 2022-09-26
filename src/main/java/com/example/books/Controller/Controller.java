@@ -33,8 +33,8 @@ public class Controller {
 
     @MutationMapping
     Book addBook(@Argument BookInput bookInput){
-        Optional<Author> author = authorRepository.findById(bookInput.authorId);
-        Book book = new Book(bookInput.name, bookInput.genre, author.get());
+        Author author = authorRepository.findAuthorById(bookInput.authorId);
+        Book book = new Book(bookInput.name, bookInput.genre, author);
         return bookRepository.save(book);
     }
 
